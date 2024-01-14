@@ -131,14 +131,14 @@ button[type="submit"]{
     background-color: black;
     color: white;
     position: fixed;
-   top: 80%;
-   margin-left: 80%;
-   height: 70px;
-   width: 70px;
-   border-radius: 50%;
-   cursor: pointer;
-   font-size: 50px;
-   border: 4px double white;
+    top: 80%;
+    left: 85%;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 50px;
+    border: 4px double white;
 }
 
 .addBookElement{
