@@ -1,7 +1,7 @@
 
 const addBookbtn = document.querySelector('.add')
 const addBookElement = document.querySelector('.addBookElement')
-
+const removeElement = document.querySelector('.removeElement')
 let formsubmit = document.querySelector('#formsubmit')
 
 let myLibrary = []
@@ -76,6 +76,10 @@ function read(boolean){
     }
 }
 
+removeElement.addEventListener('click',()=>{
+
+    addBookElement.classList.toggle('visible')    
+})
 
 
 
