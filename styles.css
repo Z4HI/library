@@ -1,0 +1,113 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.body{
+    
+}
+
+.container{
+    width: 100%;
+    height: 100svh;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+header{
+    
+    color: white;
+    background-color: black;
+    display: flex;
+}
+
+.library{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 40px;
+    justify-items: center;
+}
+
+.book{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    height: 200px;
+    width: 200px;
+    cursor: pointer;
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+input[type="checkbox"]{
+
+    display: block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+    
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+
+.add{
+
+    position: fixed;
+   top: 80%;
+   margin-left: 80%;
+   height: 100px;
+   width: 100px;
+   
+}
+
+.addBookElement{
+    color: white;
+    background-color: rgba(101, 101, 102, 0.912);
+    border-radius: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 300px;
+    width: 300px;
+    visibility: visible;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+    visibility: hidden;
+}
+
+.addbookinput{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    border-bottom: solid 3px black;
+    
+    
+}
+.addNewBook{
+    width: 100px;
+    place-self: center;
+    border-radius: 20px;
+}
+.visible{
+    visibility:visible;
+}
