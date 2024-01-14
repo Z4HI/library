@@ -24,26 +24,29 @@ header{
     background-color: black;
     display: flex;
 }
-
+header h1{
+    margin-left: 20px;
+}
 .library{
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 40px;
     justify-items: center;
 }
 
 .book{
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     text-align: center;
-    background-color: black;
-    color: white;
-    border-radius: 10px;
+    background-image: url(./images/Ancient_Open_Book_PNG_Transparent_Clipart.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    color: black;
     height: 200px;
-    width: 200px;
-    cursor: pointer;
+    width: 300px;
+    font-size: 10px;
+    margin-top: 40px;
 }
 
 input{
@@ -54,26 +57,68 @@ input{
 
 input[type="checkbox"]{
 
-    display: block;
-    margin-left: 50%;
-    transform: translateX(-50%);
+    display: inline;
+    transform: translate(7px,7px);
     margin-bottom: 10px;
-    
-    height: 30px;
-    width: 30px;
+    border: solid bisque 2px;
+    height: 20px;
+    width: 20px;
     border-radius: 10px;
     background-color: white;
 }
 
+input[type="date"]{
+    display: block;
+    width:fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: brown;
+    color: white;
+    border: solid white 3px;
+    margin-top: 5px;
+    font-size: 10px;
+    height: 25px;
+}
+
+button[type="submit"]{
+
+    margin-top: 30px;
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    color: white;
+    background-color: lawngreen;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.remove{
+    background-color: black;
+    color: white;
+    width: fit-content;
+    padding: 5px;
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    transform: translate(-40px,-170px);
+    cursor: pointer;
+}
+
 
 .add{
-
+    background-color: black;
+    color: white;
     position: fixed;
    top: 80%;
    margin-left: 80%;
-   height: 100px;
-   width: 100px;
-   
+   height: 70px;
+   width: 70px;
+   border-radius: 50%;
+   cursor: pointer;
+   font-size: 50px;
+   border: 4px double white;
 }
 
 .addBookElement{
@@ -84,7 +129,7 @@ input[type="checkbox"]{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    height: 300px;
+    height: 400px;
     width: 300px;
     visibility: visible;
     text-align: center;
@@ -110,4 +155,22 @@ input[type="checkbox"]{
 }
 .visible{
     visibility:visible;
+}
+
+@media screen and (max-width:900px){
+
+
+    .library{
+        grid-template-columns: repeat(2,1fr);
+    }
+    
+}
+
+@media screen and (max-width:620px){
+
+
+    .library{
+        grid-template-columns: repeat(1,1fr);
+    }
+    
 }
