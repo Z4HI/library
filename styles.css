@@ -36,7 +36,7 @@ header h1{
 }
 
 .book{
-    padding-top: 20px;
+    padding-top: 11px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -85,9 +85,8 @@ input[type="date"]{
     background-color:rgba(247, 247, 247, 0.67);
     color: black;
     border: solid black 3px;
-    margin-top: 5px;
+    margin-top: 0px;
     font-size: 10px;
-    height: 20px;
     cursor: pointer;
 }
 
@@ -138,9 +137,12 @@ button[type="submit"]{
     height: 70px;
     width: 70px;
     border-radius: 50%;
+    -webkit-border-radius:50%;
     cursor: pointer;
     font-size: 50px;
-    border: 4px double white;
+    border: 6px double white;
+    
+    
 }
 
 .addBookElement{
