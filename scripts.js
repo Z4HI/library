@@ -12,13 +12,14 @@ addBookbtn.addEventListener('click',()=>{
 
 })
 
-function Book(title,author,read,startdate,enddate){
+function Book(title,author,read,startdate,enddate,height){
 
     this.title = title
     this.author = author
     this.read = read
     this.startdate = startdate
     this.enddate = enddate
+    this.height = height
      
 }
 function addBookToLibrary(){
@@ -29,10 +30,12 @@ function addBookToLibrary(){
     let read = document.getElementById('inputRead').checked
     let startdate = document.getElementById('inputStartDate').value
     let enddate = document.getElementById('inputEndDate').value
-    let newBook = new Book(title.toUpperCase(),author.toUpperCase(),read,startdate,enddate)
+    let height = randomHeight()
+    let newBook = new Book(title.toUpperCase(),author.toUpperCase(),read,startdate,enddate,height)
     myLibrary.push(newBook)
+    
     render()
-    console.log(newBook)
+    
 }
 
 formsubmit.addEventListener('submit',(event)=>{
@@ -44,7 +47,11 @@ formsubmit.addEventListener('submit',(event)=>{
 
 function render(){
     let library = document.querySelector('.library')
+    let bookShelf = document.querySelector('.bookShelf')
     library.innerHTML = ""
+    bookShelf.innerHTML = ""
+    let book = myLibrary
+    book.read = null
     for(let i =0;i<myLibrary.length;i++){
         
         let book = myLibrary[i]
@@ -61,14 +68,38 @@ function render(){
          <button class="remove" onclick ="removeBook(${i})">Remove</button>
          `
         
+
+         let bookShelfBook = document.createElement('div')
+         bookShelfBook.style.height = `${book.height}px`
+         bookShelfBook.classList.add('bookShelfBook')
+         bookShelf.appendChild(bookShelfBook)
+         updateLog(myLibrary.length)
+
+         console.log(book.height)
     }
+    
+}
+
+const randomHeight= ()=> {
+    const max = 140
+    const min = 80
+    let random =  Math.floor(Math.random() * (max - min) + min);
+    return random
 }
 
 function removeBook(index){
     myLibrary.splice(index,1)
     render()
-    console.log(myLibrary)
 }
+
+function updateLog(totalbooks){
+    const totalBooks = document.querySelector('#totalBooks')
+   
+    totalBooks.innerHTML = `${totalbooks}`
+    
+}
+
+
 
 
 function read(boolean){
@@ -76,7 +107,6 @@ function read(boolean){
     if(boolean == true){
         return "checked"
     }
-
     else{
         return "unchecked"
     }

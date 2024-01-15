@@ -27,6 +27,56 @@ header{
 header h1{
     margin-left: 20px;
 }
+
+.bookLog{
+    background-color: black;
+    border: double 5px white;
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.bookShelf{
+    display: flex;
+    
+}
+
+.bookShelfBook{
+    
+    border-radius: 5px;
+    background-color:saddlebrown;
+    width: 30px;
+    border: solid black 5px;margin-top: 60px;
+    transform: rotate(180deg) translateY(-110px);
+    transform-origin: top;
+    
+}
+.bookShelfContainer{
+    background-color: red;
+    height: 180px;
+    background-image: url(./images/woodBG2.jpg);
+    background-size: cover;
+    border-bottom: inset 12px black;
+    border-left: inset 15px black;
+    border-right: outset 15px black;
+    
+    
+}
+
+.shelf{
+    display: block;
+    height: 40px;
+    width: 100%;
+    background-color: black;
+    
+    
+}
+
+
+
+.bookLog :nth-child(n){
+    text-align: center;
+}
 .library{
     padding: 10px;
     display: grid;
@@ -123,7 +173,7 @@ button[type="submit"]{
 
     background-color: red;
     width: 20px;
-    transform: translate(340px);
+    transform: translate();
     cursor: pointer;
 }
 
@@ -144,26 +194,30 @@ button[type="submit"]{
     
     
 }
-
 .addBookElement{
-    color: white;
-    background-color: rgba(46, 44, 43, 0.392);
-    border-radius: 30px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+position: absolute;
+height: 100vh;
+width: 100%;
+top: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+transform: scale(0);
+transition: 0.5s ease;
+
+}
+#formsubmit{
+    
+    
+    width: 300px;
     height: 400px;
-    width: 400px;
-    visibility: visible;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    background-color: rgba(13, 11, 11, 0.729);
+    color: white;
     padding: 20px;
-    visibility: hidden;
-    backdrop-filter: blur(10px);
-    border: solid black 4px;
+    border-radius: 20px;
+    
+    
 }
 
 .addbookinput{
@@ -180,7 +234,7 @@ button[type="submit"]{
     border-radius: 20px;
 }
 .visible{
-    visibility:visible;
+    transform: scale(1);
     
 }
 
