@@ -2,6 +2,7 @@
 const addBookbtn = document.querySelector('.add')
 const addBookElement = document.querySelector('.addBookElement')
 const removeElement = document.querySelector('.removeElement')
+
 let formsubmit = document.querySelector('#formsubmit')
 
 let myLibrary = []
@@ -38,12 +39,12 @@ formsubmit.addEventListener('submit',(event)=>{
     event.preventDefault()  
     
     addBookToLibrary() 
-
+    addBookElement.classList.toggle('visible')   
 })
 
 function render(){
     let library = document.querySelector('.library')
-    
+    library.innerHTML = ""
     for(let i =0;i<myLibrary.length;i++){
         
         let book = myLibrary[i]
@@ -57,11 +58,16 @@ function render(){
          <h4>Read?<input type="checkbox" ${checked}><h4>
          Start Date<input type="date" value="${book.startdate}">
          End Date<input type="date" value="${book.enddate}">
-         <h5 class="remove">Remove<h5>
+         <button class="remove" onclick ="removeBook(${i})">Remove</button>
          `
-        myLibrary.splice([i])
         
     }
+}
+
+function removeBook(index){
+    myLibrary.splice(index,1)
+    render()
+    console.log(myLibrary)
 }
 
 
