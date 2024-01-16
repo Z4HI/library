@@ -9,8 +9,15 @@
     margin: 0;
 }
 
-.body{
-    height: 100vh;
+body{
+    opacity: 0;
+    animation: fadein 1.5s ease-in forwards;
+}
+
+@keyframes fadein{
+    100%{
+        opacity: 1;
+    }
 }
 
 .container{
