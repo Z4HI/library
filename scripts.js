@@ -2,7 +2,8 @@
 const addBookbtn = document.querySelector('.add')
 const addBookElement = document.querySelector('.addBookElement')
 const removeElement = document.querySelector('.removeElement')
-
+const readLog = document.querySelector('#readBooks')
+const unreadLog = document.querySelector('#unreadBooks')
 let formsubmit = document.querySelector('#formsubmit')
 
 let myLibrary = []
@@ -12,7 +13,7 @@ addBookbtn.addEventListener('click',()=>{
 
 })
 
-function Book(title,author,read,startdate,enddate,height){
+function Book(title,author,read,startdate,enddate,height,color){
 
     this.title = title
     this.author = author
@@ -20,7 +21,7 @@ function Book(title,author,read,startdate,enddate,height){
     this.startdate = startdate
     this.enddate = enddate
     this.height = height
-     
+     this.color = color
 }
 function addBookToLibrary(){
 
@@ -31,9 +32,10 @@ function addBookToLibrary(){
     let startdate = document.getElementById('inputStartDate').value
     let enddate = document.getElementById('inputEndDate').value
     let height = randomHeight()
-    let newBook = new Book(title.toUpperCase(),author.toUpperCase(),read,startdate,enddate,height)
+    let color = randomColor()
+    let newBook = new Book(title.toUpperCase(),author.toUpperCase(),read,startdate,enddate,height,color)
     myLibrary.push(newBook)
-    
+    updateRead(read)
     render()
     
 }
@@ -65,18 +67,19 @@ function render(){
         <div class = "leftPage">
         <h3>TITLE: ${book.title}<h3>  
         <h4> Author: ${book.author}<h4> 
-        <h4>Read?<input type="checkbox" ${checked}><h4>
+        <h4>Read?<input type="checkbox" ${checked} class ="newBookRead" onclick = "readOnClick(${i})"><h4>
         </div>
         <div class="rightSide">
         Start Date<input type="date" value="${book.startdate}">
         End Date<input type="date" value="${book.enddate}">
-        <button class="remove" onclick ="removeBook(${i})">Remove</button>
+        <button class="remove" onclick ="removeBook(${i},${book.read})">Remove</button>
         </div>
          `
         
 
          let bookShelfBook = document.createElement('div')
          bookShelfBook.style.height = `${book.height}px`
+         bookShelfBook.style.backgroundColor = `${book.color}`
          bookShelfBook.classList.add('bookShelfBook')  
          bookShelf.appendChild(bookShelfBook)
          let bookShelfBookTitle = document.createElement('div')
@@ -84,15 +87,22 @@ function render(){
          bookShelfBookTitle.innerHTML = `${book.title.replace(/ /g, "_")}`
          bookShelfBookTitle.classList.add('bookShelfBookTitle')
          
-         updateLog(myLibrary.length,book.read)
-        console.log(book.read)
+         updateLog()
+
+         
 
          bookShelfBook.addEventListener('click',()=>{
-    
-            removeBook(i)
+            removeBook(i,book.read)
         })
     }
     
+}
+
+const randomColor = ()=>{
+    let colors = ['#e4523b','#0b454d','#ecc417','#e8931e','#f2845c','#C6A49A','#413e4a','#4f2a29','#114a5f']
+    let random = Math.floor(Math.random()*9)
+    let randomColor = colors[random]
+    return randomColor
 }
 
 const randomHeight= ()=> {
@@ -102,35 +112,73 @@ const randomHeight= ()=> {
     return random
 }
 
-function removeBook(index){
+function removeBook(index,read){
     myLibrary.splice(index,1)
+    updateLog()
     render()
+
+    if(read == true){
+        
+        readcount-=1
+        readLog.innerHTML = `${readcount}`
+    }
+    if(read == false){
+        
+        unreadcount-=1
+        unreadLog.innerHTML= `${unreadcount}`
+    }
+    
 }
 
-function updateLog(totalbooks,readbooks){
+function readOnClick(index){
+
+    let book = myLibrary[index]
+    let newBookRead = document.querySelector('.newBookRead')
+
+    book.read = newBookRead
+    if(newBookRead == true){
+        readcount+=1
+        unreadcount-=1
+        readLog.innerHTML = `${readcount}`
+        unreadLog.innerHTML = `${unreadcount}`
+    }
+    if(newBookRead == false){
+        unreadcount+=1
+        readcount-=1
+        unreadLog.innerHTML = `${unreadcount}`
+        readLog.innerHTML = `${readcount}`
+    }
+    console.log(book.checked)
+   
+}
+
+let readcount = 0
+let unreadcount = 0
+
+function updateRead(readbooks){
+
+   
+    if(readbooks == true){
+        
+        readcount+=1
+        readLog.innerHTML = `${readcount}`
+    }
+    if(readbooks == false){
+        
+        unreadcount+=1
+        unreadLog.innerHTML= `${unreadcount}`
+    }
+    
+}
+
+function updateLog(){
+
+    let totalbooks = myLibrary.length
     const totalBooks = document.querySelector('#totalBooks')
    
     totalBooks.innerHTML = `${totalbooks}`
     
-    const read = document.querySelector('#readBooks')
-    const unreadbooks = document.querySelector('#unreadBooks')
-    if(readbooks == true){
-        let readcount = 0
-        readcount+=1
-        read.innerHTML = `${readcount}`
-    }
-    else if(readbooks == false){
-        let unreadcount = 0
-        unreadcount+=1
-        unreadbooks.innerHTML= `${unreadcount}`
-    }
-
-
 }
-
-
-
-
 
 function read(boolean){
 
