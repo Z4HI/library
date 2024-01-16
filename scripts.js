@@ -7,6 +7,8 @@ const unreadLog = document.querySelector('#unreadBooks')
 let formsubmit = document.querySelector('#formsubmit')
 
 let myLibrary = []
+let readcount = 0
+let unreadcount = 0
 
 addBookbtn.addEventListener('click',()=>{
     addBookElement.classList.toggle('visible')
@@ -67,7 +69,7 @@ function render(){
         <div class = "leftPage">
         <h3>TITLE: ${book.title}<h3>  
         <h4> Author: ${book.author}<h4> 
-        <h4>Read?<input type="checkbox" ${checked} class ="newBookRead" onclick = "readOnClick(${i})"><h4>
+        <h4>Read?<input type="checkbox" ${checked} class ="newBookRead" onclick ="readOnClick(${i})"><h4>
         </div>
         <div class="rightSide">
         Start Date<input type="date" value="${book.startdate}">
@@ -113,6 +115,7 @@ const randomHeight= ()=> {
 }
 
 function removeBook(index,read){
+    
     myLibrary.splice(index,1)
     updateLog()
     render()
@@ -131,29 +134,42 @@ function removeBook(index,read){
 }
 
 function readOnClick(index){
-
+    console.log(index)
     let book = myLibrary[index]
-    let newBookRead = document.querySelector('.newBookRead')
 
-    book.read = newBookRead
-    if(newBookRead == true){
+    let flipBoolean = flip(book.read)
+    let update =  book.read = flipBoolean
+    console.log(update)
+    if(update){
         readcount+=1
         unreadcount-=1
         readLog.innerHTML = `${readcount}`
         unreadLog.innerHTML = `${unreadcount}`
+       
     }
-    if(newBookRead == false){
+    if(!update){
         unreadcount+=1
         readcount-=1
         unreadLog.innerHTML = `${unreadcount}`
         readLog.innerHTML = `${readcount}`
+
     }
-    console.log(book.checked)
    
 }
 
-let readcount = 0
-let unreadcount = 0
+function flip (boolean){
+
+    let update = false
+    if(boolean == true){
+         update = false
+    }
+   if(boolean == false){
+    update = true
+   }
+   return update
+
+}
+
 
 function updateRead(readbooks){
 
