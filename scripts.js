@@ -60,29 +60,44 @@ function render(){
         library.appendChild(bookElement);
         bookElement.classList.add('book')
         bookElement.innerHTML = 
-        `<h3>Title: ${book.title}<h3>  
-         <h4> Author: ${book.author}<h4> 
-         <h4>Read?<input type="checkbox" ${checked}><h4>
-         Start Date<input type="date" value="${book.startdate}">
-         End Date<input type="date" value="${book.enddate}">
-         <button class="remove" onclick ="removeBook(${i})">Remove</button>
+
+        `
+        <div class = "leftPage">
+        <h3>TITLE: ${book.title}<h3>  
+        <h4> Author: ${book.author}<h4> 
+        <h4>Read?<input type="checkbox" ${checked}><h4>
+        </div>
+        <div class="rightSide">
+        Start Date<input type="date" value="${book.startdate}">
+        End Date<input type="date" value="${book.enddate}">
+        <button class="remove" onclick ="removeBook(${i})">Remove</button>
+        </div>
          `
         
 
          let bookShelfBook = document.createElement('div')
          bookShelfBook.style.height = `${book.height}px`
-         bookShelfBook.classList.add('bookShelfBook')
+         bookShelfBook.classList.add('bookShelfBook')  
          bookShelf.appendChild(bookShelfBook)
-         updateLog(myLibrary.length)
+         let bookShelfBookTitle = document.createElement('div')
+         bookShelfBook.appendChild(bookShelfBookTitle)
+         bookShelfBookTitle.innerHTML = `${book.title.replace(/ /g, "_")}`
+         bookShelfBookTitle.classList.add('bookShelfBookTitle')
+         
+         updateLog(myLibrary.length,book.read)
+        console.log(book.read)
 
-         console.log(book.height)
+         bookShelfBook.addEventListener('click',()=>{
+    
+            removeBook(i)
+        })
     }
     
 }
 
 const randomHeight= ()=> {
-    const max = 140
-    const min = 80
+    const max = 150
+    const min = 90
     let random =  Math.floor(Math.random() * (max - min) + min);
     return random
 }
@@ -92,12 +107,27 @@ function removeBook(index){
     render()
 }
 
-function updateLog(totalbooks){
+function updateLog(totalbooks,readbooks){
     const totalBooks = document.querySelector('#totalBooks')
    
     totalBooks.innerHTML = `${totalbooks}`
     
+    const read = document.querySelector('#readBooks')
+    const unreadbooks = document.querySelector('#unreadBooks')
+    if(readbooks == true){
+        let readcount = 0
+        readcount+=1
+        read.innerHTML = `${readcount}`
+    }
+    else if(readbooks == false){
+        let unreadcount = 0
+        unreadcount+=1
+        unreadbooks.innerHTML= `${unreadcount}`
+    }
+
+
 }
+
 
 
 
