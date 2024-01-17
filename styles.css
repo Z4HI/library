@@ -94,6 +94,11 @@ header{
     box-shadow: 0px 0px 40px 10px rgba(255, 255, 255, 0.163);
 }
 
+.fa-solid{
+    font-size: 30px;
+    cursor: pointer;
+}
+
 .bookShelf{
     display: flex;
 }
@@ -107,9 +112,9 @@ header{
     margin-top: 45px;
     transform: rotate(180deg) translateY(-110px);
     transform-origin: top;
-    box-shadow: inset 0px 0px 5px 1px #d46e1552;
+    box-shadow: inset 0px 0px 10px 2px black;
     overflow: scroll;
-    transition: all 1s ease;
+    transition: all .2s ease;
 }
 
 .bookShelfBook:hover{
@@ -213,20 +218,29 @@ header{
     font-size: 15px;
     font-weight: bolder;
     margin-top: 40px;
-    font-family: 'Poppins', system-ui;
     justify-content: space-evenly;
-    padding-left: 40px;
     transition: all 0.5s ease;  
-    overflow:scroll ;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    
 }
 
-.leftSide :nth-child(n){
-   background-color: rgba(255, 255, 255, 0.204);
-   backdrop-filter: blur(10px);
+.leftSide {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+   background-color: rgba(255, 255, 255, 0.079);
+   backdrop-filter: blur(5px);
    width: fit-content;
    border-radius: 30px;
-   padding: 5px;
    text-align: center;
+   font-style: italic;
+   font-family: 'Sacremento', sans-serif;
+}
+
+.leftSide h3{
+    border: solid black 2px;
 }
 
 
@@ -311,14 +325,14 @@ button[type="submit"]{
 
 .remove{
     
-    color: black;
+    color: white;
     width: fit-content;
     padding: 5px;
     background-color: #ff0000;
-    transform: translate(130px,-200px);
+    transform: translate(80px,-100px);
     cursor: pointer;
     border-radius:10px;
-    font-size: 10px;
+    font-size: 8px;
     position: absolute;
     border: solid #ff8d00 3px;
    
@@ -351,27 +365,30 @@ button[type="submit"]{
 }
 
 
-.add{
-    background-color: black;
-    color: white;
-    position: fixed;
-    top: 80dvh;
-    right: 20px;
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
-    -webkit-border-radius:50%;
+#plus{
+    display: block;
     cursor: pointer;
-    font-size: 50px;
-    border: 6px double white;
-    z-index: 310;
-    transition: all 0.5s ease-in;
+    position: fixed;
+    top: 85dvh;
+    color: white;
+    left: 85%;
+    cursor: pointer;
+    background-color: none;
+    border-radius: 50px;
+    border: double white 3px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: all .3s ease-in;
+    z-index: 400;
 }
 
-.add:hover{
+#plus:hover{
     transform: rotate(360deg) scale(1.2);
-    background-color: #ff0000;
-    box-shadow:0 0px 20px 5px orange, 0 0px 20px 1px white ;
+    box-shadow:0 0px 20px 10px orange, 0 0px 10px 5px white ;
     
 }
 .addBookElement{
