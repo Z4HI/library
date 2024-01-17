@@ -14,8 +14,7 @@
         <div class="container">
             
             <header>
-                <h1 class="libLogo">Library</h1>
-                <h6>Z4HI</h4>
+                <h1 class="libLogo">Library <span>by Z4HI</span></h1>
                     <div class="bookLog">
                         <div class="logtitle">Total Books:</div>
                         <div class="logtitle">Read</div>
@@ -43,7 +42,10 @@
                     <input type="text" id="inputTitle" required>
                     <label for="inputAuthor"> Enter Authors Name</label>
                     <input type="text" id="inputAuthor">
-                    <div>Have you read this book?<input type="checkbox" id="inputRead"></div>
+                    <div>Have you read this book?
+                        <input type="checkbox" role="switch" id="inputRead">
+                        <label for="inputRead" role="switch"></label>
+                    </div>
                     Start Date<input type="date" id="inputStartDate">
                     End Date<input type="date" id="inputEndDate">
                     <button type="submit">Submit</button>

@@ -23,7 +23,7 @@ function Book(title,author,read,startdate,enddate,height,color){
     this.startdate = startdate
     this.enddate = enddate
     this.height = height
-     this.color = color
+    this.color = color
 }
 function addBookToLibrary(){
 
@@ -66,18 +66,20 @@ function render(){
         bookElement.innerHTML = 
 
         `
-        <div class = "leftPage">
+        <div class = "leftSide">
         <h3>TITLE: ${book.title}<h3>  
         <h4> Author: ${book.author}<h4> 
         <h4>Read?<input type="checkbox" ${checked} class ="newBookRead" onclick ="readOnClick(${i})"><h4>
-        </div>
-        <div class="rightSide">
-        Start Date<input type="date" value="${book.startdate}">
-        End Date<input type="date" value="${book.enddate}">
-        <button class="remove" onclick ="removeBook(${i},${book.read})">Remove</button>
+        
+        Start Date<input type="date" value="${book.startdate}" id = "bookDate">
+        End Date<input type="date" value="${book.enddate}" id = "bookDate">
+        <button class="remove">Remove</button>
         </div>
          `
-        
+        let remove = document.querySelector('.remove')
+        remove.addEventListener('click',()=>{
+            removeBook(i,book.read,book.title)
+        })
 
          let bookShelfBook = document.createElement('div')
          bookShelfBook.style.height = `${book.height}px`
@@ -94,7 +96,7 @@ function render(){
          
 
          bookShelfBook.addEventListener('click',()=>{
-            removeBook(i,book.read)
+            removeBook(i,book.read,book.title)
         })
     }
     
@@ -114,45 +116,46 @@ const randomHeight= ()=> {
     return random
 }
 
-function removeBook(index,read){
+function removeBook(index,read,title){
     
-    myLibrary.splice(index,1)
-    updateLog()
-    render()
+   const confirm =  window.confirm(`Are you sure you want to delete ${title} ?`)
 
-    if(read == true){
-        
-        readcount-=1
-        readLog.innerHTML = `${readcount}`
-    }
-    if(read == false){
-        
-        unreadcount-=1
-        unreadLog.innerHTML= `${unreadcount}`
-    }
+   if(confirm){
+        myLibrary.splice(index,1)
+        updateLog()
+        render()
+        if(read == true){
+
+            readcount-=1
+            readLog.innerHTML = `${readcount}`
+        }
+        if(read == false){
+
+            unreadcount-=1
+            unreadLog.innerHTML= `${unreadcount}`
+        }
+    }else return
     
 }
 
 function readOnClick(index){
-    console.log(index)
+    
     let book = myLibrary[index]
-
+   
     let flipBoolean = flip(book.read)
     let update =  book.read = flipBoolean
-    console.log(update)
+    
     if(update){
         readcount+=1
         unreadcount-=1
         readLog.innerHTML = `${readcount}`
         unreadLog.innerHTML = `${unreadcount}`
-       
     }
     if(!update){
         unreadcount+=1
         readcount-=1
         unreadLog.innerHTML = `${unreadcount}`
         readLog.innerHTML = `${readcount}`
-
     }
    
 }
