@@ -55,6 +55,7 @@ header{
     background-image: url(./images/newLibrary.avif);
     z-index: 200;
 }
+
 .libLogo{
     margin-left: 5px;
     background-color: yellow;
@@ -97,7 +98,35 @@ header{
 .fa-solid{
     font-size: 30px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
+.drop{
+    color:white;
+    position: absolute;
+    transform: translateY(60px);
+    font-size: 20px;
+    list-style: none;
+    background-color: rgba(247, 247, 247, 0.488);
+    backdrop-filter: blur(10px);
+    width: 150px;
+    text-align: center;
+    height: 200px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    opacity: 0;
+    transition: all .3s ease;
+    z-index: 500;
+    pointer-events: none;
+}
+
+.dropdown{
+    opacity: 1;
+}
+
 
 .bookShelf{
     display: flex;
@@ -161,7 +190,7 @@ header{
     justify-content: center;
     align-items: center;
     text-align: center;
-
+    pointer-events: none;
 }
 
 @keyframes flicker {
@@ -448,6 +477,10 @@ font-family: 'Special Elite', system-ui;
     .library{
         grid-template-columns: repeat(2,1fr);
     }
+    #icon .drop{
+        width: 100px;
+        height: 100px;
+    }
     
 }
 
@@ -460,4 +493,32 @@ font-family: 'Special Elite', system-ui;
     .logtitle{
         font-size: 12px;
     }
+
+    #plus{
+        left: 80dvw;
+    }
+
+    #icon{
+        margin-right: 5px;
+    }
+
+    #icon .drop{
+        width: 60px;
+        height: 100px;
+    }
+    
+}
+
+@media screen and (max-width:620px){
+    #icon .drop{
+        position: absolute;
+        height: 90dvh;
+        width: 90dvw;
+        left: 0%;
+        font-size: 50px;
+        color: black;
+        z-index: 10;
+    }
+
+    
 }

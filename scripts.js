@@ -5,14 +5,19 @@ const removeElement = document.querySelector('.removeElement')
 const readLog = document.querySelector('#readBooks')
 const unreadLog = document.querySelector('#unreadBooks')
 let formsubmit = document.querySelector('#formsubmit')
+const menu = document.querySelector('#icon')
+const menudrop = document.querySelector('.drop')
 
 let myLibrary = []
 let readcount = 0
 let unreadcount = 0
 
 addBookbtn.addEventListener('click',()=>{
-    addBookElement.classList.toggle('visible')
+    addBookElement.classList.add('visible')
 
+})
+menu.addEventListener('click',()=>{
+    menudrop.classList.toggle('dropdown')
 })
                     //Book Object Constructor
 function Book(title,author,read,startdate,enddate,height,color){
