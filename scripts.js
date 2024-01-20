@@ -78,7 +78,7 @@ function render(){
         library.appendChild(bookElement);
         bookElement.classList.add('book')
         bookElement.innerHTML = 
-                    //iterating through number of books and adding properties of each
+                    
         `                       
         <div class = "leftSide">
         <h3>TITLE: ${book.title}<h3>  
@@ -87,13 +87,11 @@ function render(){
         
         Start Date<input type="date" value="${book.startdate}" id = "bookDate">
         End Date<input type="date" value="${book.enddate}" id = "bookDate">
-        <button class="remove">Remove</button>
+        <button class="remove" onclick="removeBook(${i},${book.read})">Remove</button>
         </div>
-         `          //remove book from array on click
-        let remove = document.querySelector('.remove')
-        remove.addEventListener('click',()=>{
-            removeBook(i,book.read,book.title)
-        })
+         `         
+       
+            
                         //creating book shelf books, same properties as book instance,added height and color
          let bookShelfBook = document.createElement('div')
          bookShelfBook.style.height = `${book.height}px`
@@ -132,8 +130,8 @@ const randomHeight= ()=> {
                         //if the book is read or not to subtract 1 from read or unread
                         //the title of the book to promt user confirmation of deleteion
 function removeBook(index,read,title){
-    
-   const confirm =  window.confirm(`Are you sure you want to delete ${title} ?`)
+
+    let confirm = window.confirm(`Are you sure you want to delete ${title}?`)
 
    if(confirm){
         myLibrary.splice(index,1)
@@ -149,7 +147,7 @@ function removeBook(index,read,title){
             unreadcount-=1
             unreadLog.innerHTML= `${unreadcount}`
         }
-    }else return
+   }
     
 }
                         //update when the readbox on books is clicked, the books previous 
@@ -178,6 +176,8 @@ function readOnClick(index){
         unreadLog.innerHTML = `${unreadcount}`
         readLog.innerHTML = `${readcount}`
     }
+
+    render()
    
 }
                     //flips the boolean(true or false) and returns flipped value
